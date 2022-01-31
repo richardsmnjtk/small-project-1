@@ -1,0 +1,26 @@
+#!/bin/bash
+
+jawaban="Y"
+
+read -p "Yakin menghapus setup apache2, php & mysql-server ? (Y/n)" pilih;
+
+if [ $pilih == $jawaban ]
+then
+ echo "______________________________________________-"
+ echo "-----------Menghapus layanan apache2-----------"
+ echo "______________________________________________-"
+ sudo apt --purge remove -y apache2
+ echo "-------------Menghapus layanan php-------------"
+ sudo apt --purge remove -y php
+ echo "--------Menghapus layanan mysql-server---------"
+ sudo apt --purge remove -y mysql-server*
+ echo "Proses apt autoclean"
+ sudo apt autoclean
+ echo "Proses apt autoremove"
+ sudo apt autoremove -y
+ echo "Proses Penghapusan Service Selesai"
+ exit 0
+else
+ echo "Menghapus Layanan Dibatalkan"
+ exit 1
+fi
